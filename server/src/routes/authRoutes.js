@@ -6,7 +6,6 @@ const User = mongoose.model('User');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
-    console.log("Request", req.body)
     const { email, password } = req.body;
     try {
         const user = new User({ email, password });

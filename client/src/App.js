@@ -1,19 +1,22 @@
-import React, { useMemo, memo } from 'react';
-import { FullPageSpinner } from './components';
+import React, {useMemo, memo} from 'react';
+import {FullPageSpinner} from './components';
+import {useAuth} from 'context/Auth';
 
 const UnauthenticatedApp = React.lazy(() => import('./UnauthenticatedApp'));
 const AuthenticatedApp = React.lazy(() => import('./AuthenticatedApp'));
 
-function App() {
+const App = () => {
+  const {isSignIn} = useAuth();
   const authenticated = useMemo(
-    () => (false ? <AuthenticatedApp /> : <UnauthenticatedApp />),
-    [],
+    () => (isSignIn ? <AuthenticatedApp /> : <UnauthenticatedApp />),
+    [isSignIn],
   );
+
   return (
     <React.Suspense fallback={<FullPageSpinner />}>
       {authenticated}
     </React.Suspense>
   );
-}
+};
 
 export default memo(App);

@@ -6,6 +6,8 @@ import bg3 from '../../assets/utils/images/originals/citynights.jpg';
 
 import {Col, Row, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
+import {useAuth} from 'context/Auth';
+
 const Register = () => {
   const settings = {
     dots: true,

@@ -1,11 +1,13 @@
-/**
- * AppProviders - will include other providers (for global)
- */
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
+import {AuthProvider} from './Auth';
 
 function AppProviders({children}) {
-  return <Router>{children}</Router>;
+  return (
+    <Router>
+      <AuthProvider>{children}</AuthProvider>
+    </Router>
+  );
 }
 
 export {AppProviders};

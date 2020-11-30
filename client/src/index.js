@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './assets/base.scss';
+import { BrowserRouter } from 'react-router-dom';
+import * as serviceWorker from './serviceWorker';
 import App from './App';
-import {AppProviders} from 'context';
 
-ReactDOM.render(
-  <AppProviders>
+ReactDOM.render((
+  <BrowserRouter>
     <App />
-  </AppProviders>,
-  document.getElementById('root'),
-);
+  </BrowserRouter>
+), document.getElementById('root'));
+
+serviceWorker.unregister();

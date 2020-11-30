@@ -1,22 +1,21 @@
-import React, {useMemo, memo} from 'react';
-import {FullPageSpinner} from './components';
-import {useAuth} from 'context/Auth';
-
-const UnauthenticatedApp = React.lazy(() => import('./UnauthenticatedApp'));
-const AuthenticatedApp = React.lazy(() => import('./AuthenticatedApp'));
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import React from 'react';
+import { useRoutes } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core';
+import GlobalStyles from 'src/components/GlobalStyles';
+import 'src/mixins/chartjs';
+import theme from 'src/theme';
+import routes from 'src/routes';
 
 const App = () => {
-  const {isSignIn} = useAuth();
-  const authenticated = useMemo(
-    () => (isSignIn ? <AuthenticatedApp /> : <UnauthenticatedApp />),
-    [isSignIn],
-  );
+  const routing = useRoutes(routes);
 
   return (
-    <React.Suspense fallback={<FullPageSpinner />}>
-      {authenticated}
-    </React.Suspense>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      {routing}
+    </ThemeProvider>
   );
 };
 
-export default memo(App);
+export default App;

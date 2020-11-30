@@ -37,6 +37,11 @@ const items = [
     title: 'Dashboard'
   },
   {
+    href: '/app/classes',
+    icon: BarChartIcon,
+    title: 'Classes',
+  },
+  {
     href: '/app/customers',
     icon: UsersIcon,
     title: 'Customers'

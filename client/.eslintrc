@@ -30,6 +30,10 @@
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "import/prefer-default-export": "off",
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "arrow-parens":"off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-unused-vars":"warn",
+    "object-curly-newline": "off"
   }
 }

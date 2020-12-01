@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 
 import axios from 'src/utils/axios';
 
@@ -23,6 +23,8 @@ const useClassesDispatch = () => {
 };
 
 export const useClasses = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const state = useClassesState();
   const dispatch = useClassesDispatch();
   useEffect(() => {
@@ -30,8 +32,11 @@ export const useClasses = () => {
       try {
         const response = await axios.get('/classes');
         dispatch(classesActions.fetchClasses(response.data.classes));
-      } catch (error) {
-        console.error(error);
+        setLoading(false);
+      } catch (e) {
+        console.error(e);
+        setLoading(false);
+        setError(false);
       }
     };
     fetchListClass();
@@ -39,6 +44,8 @@ export const useClasses = () => {
 
   const listClass = useMemo(() => state.listClass, [state.listClass]);
   return {
+    error,
+    loading,
     listClass
   };
 };

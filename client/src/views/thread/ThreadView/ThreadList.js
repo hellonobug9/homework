@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { Box, Container, Grid, makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
-import { useClasses } from 'src/context/Classes';
+import { useThreads } from 'src/context/Threads';
 import Loading from 'src/components/LottieLoading';
 import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
-import ClassCard from './ClassCard';
+import ThreadCard from './ThreadCard';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,27 +14,27 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
   },
-  productCard: {
+  threadCard: {
     height: '100%'
   }
 }));
 
-const ProductList = () => {
+const ThreadList = () => {
   const classes = useStyles();
 
-  const { listClass, error, loading } = useClasses();
+  const { listThread, error, loading } = useThreads();
 
-  const listClassView = useMemo(
+  const listThreadView = useMemo(
     () => (
       <>
-        {listClass.map(product => (
-          <Grid item key={product.id} lg={4} md={6} xs={12}>
-            <ClassCard className={classes.productCard} product={product} />
+        {listThread.map(thread => (
+          <Grid item key={thread.id} lg={4} md={6} xs={12}>
+            <ThreadCard className={classes.threadCard} thread={thread} />
           </Grid>
         ))}
       </>
     ),
-    [listClass]
+    [listThread]
   );
 
   if (loading) {
@@ -51,7 +51,7 @@ const ProductList = () => {
         <Toolbar />
         <Box mt={3}>
           <Grid container spacing={3}>
-            {listClassView}
+            {listThreadView}
           </Grid>
         </Box>
         <Box mt={3} display="flex" justifyContent="center">
@@ -62,4 +62,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default ThreadList;

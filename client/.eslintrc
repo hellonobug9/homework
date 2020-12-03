@@ -34,6 +34,7 @@
     "arrow-parens":"off",
     "react/jsx-one-expression-per-line": "off",
     "no-unused-vars":"warn",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "import/order": "off"
   }
 }

@@ -1,1 +1,1 @@
-export * from './classesMock';
+export * from './threadMock';

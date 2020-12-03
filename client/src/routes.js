@@ -10,7 +10,9 @@ import NotFoundView from 'src/views/errors/NotFoundView';
 import ProductListView from 'src/views/product/ProductListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
-import ClassRoomView from 'src/views/classroom/ClassRoomView';
+import ThreadView from 'src/views/thread/ThreadView';
+import ThreadList from 'src/views/thread/ThreadView/ThreadList';
+import ChatBoxView from 'src/views/chatBox/ChatBoxView';
 
 const routes = [
   {
@@ -18,7 +20,14 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       { path: 'account', element: <AccountView /> },
-      { path: 'classes', element: <ClassRoomView /> },
+      {
+        path: 'threads',
+        element: <ThreadView />,
+        children: [
+          { path: '/', element: <ThreadList /> },
+          { path: ':id', element: <ChatBoxView /> }
+        ]
+      },
       { path: 'customers', element: <CustomerListView /> },
       { path: 'dashboard', element: <DashboardView /> },
       { path: 'products', element: <ProductListView /> },

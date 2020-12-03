@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import faker from 'faker';
+import { useNavigate } from 'react-router-dom';
 import {
   Avatar,
   Box,
@@ -30,12 +31,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductCard = ({ className, product, ...rest }) => {
+const ThreadCard = ({ className, thread, ...rest }) => {
+  const navigate = useNavigate();
   const classes = useStyles();
+  const goToChatBox = useCallback(() => {
+    const { id } = thread;
+    navigate(`./${id}`);
+  }, []);
 
   return (
     <Card className={clsx(classes.root, className)} {...rest}>
-      <CardActionArea>
+      <CardActionArea onClick={goToChatBox}>
         <CardContent>
           <Box display="flex" justifyContent="center" mb={3}>
             <Avatar alt="Product" src={faker.image.avatar()} variant="square" />
@@ -46,10 +52,10 @@ const ProductCard = ({ className, product, ...rest }) => {
             gutterBottom
             variant="h4"
           >
-            {product.title}
+            {thread.title}
           </Typography>
           <Typography align="center" color="textPrimary" variant="body1">
-            {product.description}
+            {thread.description}
           </Typography>
         </CardContent>
         <Box flexGrow={1} />
@@ -66,7 +72,7 @@ const ProductCard = ({ className, product, ...rest }) => {
           <Grid className={classes.statsItem} item>
             <GetAppIcon className={classes.statsIcon} color="action" />
             <Typography color="textSecondary" display="inline" variant="body2">
-              {product.totalDownloads} Downloads
+              {thread.totalDownloads} Downloads
             </Typography>
           </Grid>
         </Grid>
@@ -75,9 +81,9 @@ const ProductCard = ({ className, product, ...rest }) => {
   );
 };
 
-ProductCard.propTypes = {
+ThreadCard.propTypes = {
   className: PropTypes.string,
-  product: PropTypes.object.isRequired
+  thread: PropTypes.object.isRequired
 };
 
-export default ProductCard;
+export default ThreadCard;

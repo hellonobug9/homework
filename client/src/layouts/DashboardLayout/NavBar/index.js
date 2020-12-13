@@ -32,6 +32,11 @@ const user = {
 
 const items = [
   {
+    href: '/app/blueprint',
+    icon: BarChartIcon,
+    title: 'Blueprint'
+  },
+  {
     href: '/app/dashboard',
     icon: BarChartIcon,
     title: 'Dashboard'
@@ -220,7 +225,7 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
-  onMobileClose: () => {},
+  onMobileClose: () => { },
   openMobile: false
 };
 

@@ -1,11 +1,12 @@
-import React, { useCallback, Fragment, useMemo } from 'react';
+import React, { useCallback, Fragment, useMemo, useState } from 'react';
 import {
   Box,
   Container,
   Grid,
   makeStyles,
   Card,
-  CardContent
+  CardContent,
+  Drawer
 } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import { useThreadDetail } from 'src/context/Threads';
@@ -13,6 +14,7 @@ import Toolbar from './Toolbar';
 import Loading from 'src/components/LottieLoading';
 import Input from './Input';
 import Message from './Message';
+import Rankings from '../rankings'
 
 const messageDetails = {
   '2': [
@@ -69,11 +71,15 @@ const useStyles = makeStyles(theme => ({
   cardContainer: {
     height: '100%'
   },
-  cardContent: {
+  msgContent: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '100%',
+    paddingLeft: '15%',
+    paddingRight: '15%'
+  },
+  rankingsContent: {
     paddingLeft: '15%',
     paddingRight: '15%'
   },
@@ -83,6 +89,7 @@ const useStyles = makeStyles(theme => ({
   boxInput: {}
 }));
 const ChatBox = () => {
+  const [openDrawer, setOpenDrawer] = useState(false)
   const params = useParams();
   const { id } = params;
   const classes = useStyles();
@@ -112,10 +119,13 @@ const ChatBox = () => {
   );
   return (
     <Container className={classes.chatBoxRoot} maxWidth={false}>
+      <Drawer open={openDrawer} anchor="right">
+        <Rankings />
+      </Drawer>
       <Toolbar />
       <Box className={classes.boxContainer} mt={3}>
         <Card className={classes.cardContainer}>
-          <CardContent className={classes.cardContent}>
+          <CardContent className={classes.msgContent}>
             <div className={classes.boxMsgs}>{renderMessages}</div>
             <div className={classes.boxInput}>
               <Input />

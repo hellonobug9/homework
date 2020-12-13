@@ -14,7 +14,6 @@ import ThreadView from 'src/views/thread/ThreadView';
 import ThreadList from 'src/views/thread/ThreadView/ThreadList';
 import ChatBoxView from 'src/views/chatBox/ChatBoxView';
 import BluePrintView from 'src/views/blueprint/BlueprintView';
-
 const routes = [
   {
     path: 'app',

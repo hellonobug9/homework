@@ -8,6 +8,7 @@ import 'src/mixins/chartjs';
 import 'src/mocks';
 
 const App = () => {
+  console.log("Hello from test2")
   const routing = useRoutes(routes);
   return (
     <AppProviders>

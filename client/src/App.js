@@ -8,7 +8,7 @@ import 'src/mixins/chartjs';
 import 'src/mocks';
 
 const App = () => {
-  console.log("Hello from test2")
+  console.log('Hello Git')
   const routing = useRoutes(routes);
   return (
     <AppProviders>
